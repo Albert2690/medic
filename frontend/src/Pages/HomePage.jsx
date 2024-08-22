@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import DownloadReportButton from '../Components/DownloadReport';
+import apiInstance from '../Api';
+
 
 function HomePage() {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -141,7 +143,7 @@ function HomePage() {
         </button>
         
         {/* Download Report Button */}
-        <div className="absolute z-50  bg-cyan-200  hover:bg-transparent text-black p-4 rounded-lg top-3/4 right-1/2 ">
+        <div className="absolute z-50  bg-green-200  hover:bg-transparent text-black p-4 rounded-lg top-3/4 right-1/2 ">
           <DownloadReportButton reportData={reportData} />
         </div>
       </div>

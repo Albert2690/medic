@@ -33,32 +33,33 @@ const LoginPage = () => {
      return setError( "Invalid email format" );
     }
 
-    if(password.length < 5){
+    if(password.length < 4){
        return setError('Password must be more than 5 characters');
     }
     
 
     try {
-      // const response = await apiInstance.post("/login", {
-      //   email,
-      //   password,
-      // }, {
-      //   withCredentials: true 
-      // });
+      const response = await apiInstance.post("/login/", {
+        email,
+        password,
+      }, {
+        withCredentials: true 
+      });
 
-      // if (response.data.error) {
-      //   setError(response.data.error || "Login failed");
-      // } else {
+      if (response.data.error) {
+        setError(response.data.error || "Login failed");
+      } else {
         toast.success("Login successful!");
         navigate("/");
-      // }
-    } catch (error) {
+     
+    }
+   } catch (error) {
       setError(error.response?.data?.error || error.response?.data?.message || "An unexpected error occurred");
     }
   };
 
   useEffect(() => {
-    const token = Cookies.get('userJwt');
+    const token = Cookies.get('access_token');
     if (token) {
       navigate('/');
     }

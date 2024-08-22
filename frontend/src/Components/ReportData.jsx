@@ -120,7 +120,6 @@ const ReportPDF = ({ reportData }) => {
 
         {/* Footer */}
         <Text style={styles.footer}>** END OF REPORT **</Text>
-        <Text style={styles.signature}>Signature</Text>
       </Page>
     </Document>
   );
