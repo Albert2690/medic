@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Logo from '../../assets/images/Vcare.png'
-import { Link,useLocation } from 'react-router-dom';
+import { Link,useLocation,useNavigate } from 'react-router-dom';
 const pages = ['Products', 'Pricing', 'Blog'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
@@ -10,6 +10,8 @@ function Header() {
   const [isNavOpen, setIsNavOpen] = useState(false); 
   const location = useLocation();
   const isLogin = location.pathname.startsWith("/login"); 
+
+  const navigate = useNavigate()
 
 //   const handleOpenNavMenu = (event) => {
 //     setAnchorElNav(event.currentTarget);
@@ -29,6 +31,12 @@ function Header() {
   const handleToggleNavMenu = () => {
     setIsNavOpen(!isNavOpen); 
   };
+  const handlelogout = ()=>{
+   localStorage.removeItem('access_token')
+   
+    navigate('/login')
+   
+  }
 
   return (
     <nav className="bg-cyan-200 border-gray-200 fixed top-0 left-0 w-full z-50">
@@ -96,11 +104,11 @@ function Header() {
             </li>
             :
             <li>
-                <Link to={'/login'}>
+              
                
-              <a href="#" className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent font-bold md:hover:text-blue-700 md:p-0 hover:scale(105) transition-400  dark:text-gray-400 md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 text-md">Logout</a>
+              <span onClick={handlelogout}  className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent font-bold md:hover:text-blue-700 md:p-0 hover:scale(105) transition-400  dark:text-gray-400 md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 text-md">Logout</span>
 
-              </Link>
+             
             </li>
 }
           </ul>

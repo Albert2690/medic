@@ -6,28 +6,41 @@ import apiInstance from '../Api';
 function HomePage() {
   const [activeIndex, setActiveIndex] = useState(0);
   const [reportData, setreportData] = useState({
-    name: 'ALBERT',
-    age: '22/Male',
-    doctor: 'SELF',
-    sampleCollectedAt: '07-07-2023 09:37:40',
-    tests: [
-      {
-        description: 'FASTING BLOOD SUGAR (FBS)',
-        value: '81 mg/dl',
-        referenceInterval: '70-110 mg/dl',
-      },
     
-    ],
+      username: "Albert",
+      email: "albert@gmail.com",
+      profile: {
+          phone_number: "88888888",
+          address: "ozhur(po ) pulparamb",
+          date_of_birth: "2000-06-01",
+          test_details: [
+              {
+                  sample_collected_at: "2000-05-05T05:20:00Z",
+                  age: 25,
+                  doctor: {
+                      "name": "Aravind"
+                  },
+                  tests: [
+                      {
+                          "Test_Description": "FASTING BLOOD SUGAR (FBS)",
+                          "Biological_Reference_Interval": "70-110 mg/dl"
+                      }
+                  ]
+              }
+          ]
+      }
+  
   });
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await apiInstance.get("/get-report", {
+        const response = await apiInstance.get("/user/details/", {
           withCredentials: true,
         });
 
-        if (response.data && Array.isArray(response.data.students)) {
+        if (response.data ) {
+          console.log(response.data,'dataa')
           setreportData(response.data.reportData);
         }
       } catch (error) {
@@ -143,8 +156,8 @@ function HomePage() {
         </button>
         
         {/* Download Report Button */}
-        <div className="absolute z-50  bg-green-200  hover:bg-transparent text-black p-4 rounded-lg top-3/4 right-1/2 ">
-          <DownloadReportButton reportData={reportData} />
+        <div className="absolute z-50  bg-cyan-200  hover:bg-transparent text-black p-4 rounded-lg top-3/4 right-1/2 ">
+          {/* <DownloadReportButton reportData={reportData} /> */}
         </div>
       </div>
     </>

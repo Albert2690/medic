@@ -49,6 +49,7 @@ const LoginPage = () => {
       if (response.data.error) {
         setError(response.data.error || "Login failed");
       } else {
+        localStorage.setItem('access_token',response.data.access_token)
         toast.success("Login successful!");
         navigate("/");
      
@@ -59,7 +60,7 @@ const LoginPage = () => {
   };
 
   useEffect(() => {
-    const token = Cookies.get('access_token');
+    const token = localStorage.getItem('access_token')
     if (token) {
       navigate('/');
     }
