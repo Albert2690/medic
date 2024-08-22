@@ -7,7 +7,7 @@ import Cookies from 'js-cookie';
 
 
 function ProtectedRoutes() {
-    const token = Cookies.get('refresh_token');
+    const token = Cookies.get('access_token');
     console.log('hello jwt')
     console.log(token,'token');
     if(!token){
