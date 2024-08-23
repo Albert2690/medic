@@ -5,43 +5,17 @@ import apiInstance from '../Api';
 
 function HomePage() {
   const [activeIndex, setActiveIndex] = useState(0);
-  const [reportData, setreportData] = useState({
-    
-      username: "Albert",
-      email: "albert@gmail.com",
-      profile: {
-          phone_number: "88888888",
-          address: "ozhur(po ) pulparamb",
-          date_of_birth: "2000-06-01",
-          test_details: [
-              {
-                  sample_collected_at: "2000-05-05T05:20:00Z",
-                  age: 25,
-                  doctor: {
-                      "name": "Aravind"
-                  },
-                  tests: [
-                      {
-                          "Test_Description": "FASTING BLOOD SUGAR (FBS)",
-                          "Biological_Reference_Interval": "70-110 mg/dl"
-                      }
-                  ]
-              }
-          ]
-      }
-  
-  });
-
+  const [reportData, setreportData] = useState()
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await apiInstance.get("/user/details/", {
+        const response = await apiInstance.get("/user/details", {
           withCredentials: true,
         });
 
         if (response.data ) {
           console.log(response.data,'dataa')
-          setreportData(response.data.reportData);
+          setreportData(response.data);
         }
       } catch (error) {
         console.error("Error fetching user-report:", error);
@@ -50,6 +24,8 @@ function HomePage() {
 
     fetchData();
   }, []);
+
+  console.log(reportData,'reporttt')
 
   const images = [
     'https://graphicsfamily.com/wp-content/uploads/edd/2022/04/Social-Media-Banner-Design-for-Health-and-Medical-Promotion-1180x664.jpg',
@@ -76,6 +52,7 @@ function HomePage() {
 
   return (
     <>
+    
       <div id="default-carousel" className="relative w-full mt-16">
         {/* Carousel wrapper */}
         <div className="relative h-[600px] overflow-hidden rounded-lg md:h-screen">
@@ -156,9 +133,17 @@ function HomePage() {
         </button>
         
         {/* Download Report Button */}
+        {reportData ? 
+    
+
+
         <div className="absolute z-50  bg-cyan-200  hover:bg-transparent text-black p-4 rounded-lg top-3/4 right-1/2 ">
-          {/* <DownloadReportButton reportData={reportData} /> */}
+          <DownloadReportButton reportData={reportData} />
         </div>
+            :(
+              <div></div>
+            )
+          }
       </div>
     </>
   );

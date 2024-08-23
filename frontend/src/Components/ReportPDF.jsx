@@ -85,16 +85,16 @@ const ReportPDF = ({ reportData }) => {
             src="https://your-logo-url.com/logo.png"
             style={{ width: 50, height: 50 }}
           />
-          <Text>Doctors Diagnostic Centre</Text>
+          <Text>Vcare Diagnostic Centre</Text>
           <Text>Trusted Since 1983</Text>
         </View>
 
         {/* Patient Details */}
         <View style={styles.section}>
-          <Text>Name: {reportData.name}</Text>
+          <Text>Name: {reportData.username}</Text>
           <Text>Age/Dob/Sex: {reportData.age}</Text>
-          <Text>Doctor: {reportData.doctor}</Text>
-          <Text>Sample Collected at: {reportData.sampleCollectedAt}</Text>
+          <Text>Doctor: {reportData.doctor_name.toUpperCase()}</Text>
+          <Text>Sample Collected at: {reportData.sample_collected_at}</Text>
         </View>
 
         {/* Test Results */}
@@ -120,7 +120,7 @@ const ReportPDF = ({ reportData }) => {
 
         {/* Footer */}
         <Text style={styles.footer}>** END OF REPORT **</Text>
-        <Text style={styles.signature}>Signature</Text>
+        {/* <Text style={styles.signature}>Signature</Text> */}
       </Page>
     </Document>
   );

@@ -91,10 +91,10 @@ const ReportPDF = ({ reportData }) => {
 
         {/* Patient Details */}
         <View style={styles.section}>
-          <Text>Name: {reportData.name}</Text>
+          <Text>Name: {reportData.username}</Text>
           <Text>Age/Dob/Sex: {reportData.age}</Text>
           <Text>Doctor: {reportData.doctor}</Text>
-          <Text>Sample Collected at: {reportData.sampleCollectedAt}</Text>
+          <Text>Sample Collected at: {reportData.sample_collected_at}</Text>
         </View>
 
         {/* Test Results */}

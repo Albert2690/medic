@@ -6,7 +6,7 @@ const DownloadReportButton = ({ reportData }) => {
   return (
     <PDFDownloadLink className='text-md font-bold'
       document={<ReportPDF reportData={reportData} />}
-      fileName={`${reportData.name}-test-report.pdf`}
+      fileName={`${reportData.username}-test-report.pdf`}
     >
       {({ blob, url, loading, error }) =>
         loading ? 'Generating document...' : 'Download Report'
